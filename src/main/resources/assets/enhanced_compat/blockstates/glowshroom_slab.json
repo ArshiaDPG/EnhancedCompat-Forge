@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "enhanced_compat:block/glowshroom_slab" },
+    "type=top": { "model": "enhanced_compat:block/glowshroom_slab_top" },
+    "type=double": { "model": "enhanced_compat:block/glowshroom_planks" }
+  }
+}

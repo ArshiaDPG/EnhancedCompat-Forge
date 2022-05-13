@@ -1,0 +1,29 @@
+{
+    "block.enhanced_compat.glowshroom_stem": "Glowshroom Stem",
+    "block.enhanced_compat.stripped_glowshroom_stem": "Stripped Glowshroom Stem",
+    "block.enhanced_compat.glowshroom_hyphae": "Glowshroom Hyphae",
+    "block.enhanced_compat.stripped_glowshroom_hyphae": "Stripped Glowshroom Hyphae",
+    "block.enhanced_compat.glowshroom_planks": "Glowshroom Planks",
+    "block.enhanced_compat.vertical_glowshroom_planks": "Vertical Glowshroom Planks",
+    "block.enhanced_compat.glowshroom_stairs": "Glowshroom Stairs",
+    "block.enhanced_compat.glowshroom_slab": "Glowshroom Slab",
+    "block.enhanced_compat.glowshroom_pressure_plate": "Glowshroom Pressure Plate",
+    "block.enhanced_compat.glowshroom_fence": "Glowshroom Fence",
+    "block.enhanced_compat.glowshroom_fence_gate": "Glowshroom Fence Gate",
+    "block.enhanced_compat.glowshroom_button": "Glowshroom Button",
+    "block.enhanced_compat.glowshroom_fence": "Glowshroom Door",
+    "block.enhanced_compat.glowshroom_door": "Glowshroom Door",
+    "block.enhanced_compat.glowshroom_trapdoor": "Glowshroom Trapdoor",
+    "block.enhanced_compat.glowshroom_vertical_slab": "Glowshroom Vertical Slab",
+    "block.enhanced_compat.glowshroom_bookshelf": "Glowshroom Bookshelf",
+    "block.enhanced_compat.glowshroom_ladder": "Glowshroom Ladder",
+    "block.enhanced_compat.glowshroom_post": "Glowshroom Post",
+    "block.enhanced_compat.glowshroom_chest": "Glowshroom Chest",
+    "block.enhanced_compat.glowshroom_trapped_chest": "Glowshroom Trapped Chest",
+    "block.enhanced_compat.glowshroom_sign": "Glowshroom Sign",
+    "block.enhanced_compat.stripped_glowshroom_post": "Stripped Glowshroom Post",
+    "block.enhanced_compat.glowshroom_beehive": "Glowshroom Beehive",
+
+    "item.enhanced_compat.glowshroom_boat": "Glowshroom Boat"
+
+}

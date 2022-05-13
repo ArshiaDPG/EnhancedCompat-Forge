@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.digitalpear.enhanced_compat.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "enhanced_compat.refmap.json",
+  "mixins": [
+    "HugeGlowshroomFeatureMixin",
+    "MediumGlowshroomFeatureMixin",
+    "SmallGlowshroomFeatureMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
