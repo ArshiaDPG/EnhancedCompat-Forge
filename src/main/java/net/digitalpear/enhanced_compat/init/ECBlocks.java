@@ -69,11 +69,11 @@ public class ECBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_DOOR = registerBlock("glowshroom_door",
             () -> new DoorBlock(createGlowshroomMaterial(GLOWSHROOM_COLOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
 
-    public static final RegistryObject<Block> GLOWSHROOM_WALL_SIGN = registerBlockWithoutBlockItem("glowshroom_door_wall_sign",
-            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.GLOWSHROOM));
+    public static final RegistryObject<Block> GLOWSHROOM_WALL_SIGN = registerBlockWithoutBlockItem("glowshroom_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN).color(GLOWSHROOM_COLOR).lightLevel((state) -> glowshroomLight), ModWoodTypes.GLOWSHROOM));
 
-    public static final RegistryObject<Block> GLOWSHROOM_SIGN = registerBlockWithoutBlockItem("glowshroom_door_sign",
-            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.GLOWSHROOM));
+    public static final RegistryObject<Block> GLOWSHROOM_SIGN = registerBlockWithoutBlockItem("glowshroom_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN).color(GLOWSHROOM_COLOR).lightLevel((state) -> glowshroomLight), ModWoodTypes.GLOWSHROOM));
 
     public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> SIGN_BLOCK_ENTITIES =
             BLOCK_ENTITIES.register("sign_block_entity", () ->
@@ -112,5 +112,6 @@ public class ECBlocks {
 
     public static void init(IEventBus bus){
         BLOCKS.register(bus);
+        BLOCK_ENTITIES.register(bus);
     }
 }
