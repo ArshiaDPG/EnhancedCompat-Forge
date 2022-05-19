@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "enhanced_compat:glowshroom_boat"
+    "enhanced_compat:glowshroom_boat",
+	"enhanced_compat:toadstool_boat"
   ]
 }

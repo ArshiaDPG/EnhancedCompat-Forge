@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":    { "model": "enhanced_compat:block/stripped_toadstool_hyphae" },
+    "axis=z":     { "model": "enhanced_compat:block/stripped_toadstool_hyphae", "x": 90 },
+    "axis=x":     { "model": "enhanced_compat:block/stripped_toadstool_hyphae", "x": 90, "y": 90 }
+  }
+}

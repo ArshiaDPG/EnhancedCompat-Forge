@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#enhanced_compat:glowshroom_stems"
+    "#enhanced_compat:glowshroom_stems",
+	"#enhanced_compat:toadstool_stems"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "enhanced_compat:toadstool_stem",
+    "enhanced_compat:stripped_toadstool_stem",
+    "enhanced_compat:toadstool_hyphae",
+    "enhanced_compat:stripped_toadstool_hyphae"
+  ]
+}

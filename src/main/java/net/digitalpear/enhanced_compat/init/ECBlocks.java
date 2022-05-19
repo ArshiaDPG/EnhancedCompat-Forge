@@ -1,5 +1,7 @@
 package net.digitalpear.enhanced_compat.init;
 
+import biomesoplenty.api.block.BOPBlocks;
+import com.teamaurora.enhanced_mushrooms.core.registry.EMBlocks;
 import net.digitalpear.enhanced_compat.EnhancedCompatMod;
 import net.digitalpear.enhanced_compat.common.block.ModStandingSignBlock;
 import net.digitalpear.enhanced_compat.common.block.ModWallSignBlock;
@@ -27,21 +29,30 @@ public class ECBlocks {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, EnhancedCompatMod.MOD_ID);
 
     //Default values for Glowshroom blocks
-    public static final MaterialColor GLOWSHROOM_COLOR = MaterialColor.COLOR_LIGHT_BLUE;
-    public static final MaterialColor GLOWSHROOM_SIDE_COLOR = MaterialColor.COLOR_LIGHT_BLUE;
+    public static final MaterialColor GLOWSHROOM_COLOR = MaterialColor.DIAMOND;
+    public static final MaterialColor GLOWSHROOM_SIDE_COLOR = MaterialColor.SNOW;
     public static final int glowshroomLight = 6;
 
     //Default values for Toadstool blocks
     public static final MaterialColor TOADSTOOL_COLOR = MaterialColor.COLOR_ORANGE;
-    public static final MaterialColor TOADSTOOL_SIDE_COLOR = MaterialColor.TERRACOTTA_WHITE;
+    public static final MaterialColor TOADSTOOL_SIDE_COLOR = MaterialColor.SNOW;
 
-    public static BlockBehaviour.Properties createGlowshroomMaterial(Block baseBlock,MaterialColor color){
-        return BlockBehaviour.Properties.copy(baseBlock).color(color).lightLevel((state) -> glowshroomLight);
+    public static BlockBehaviour.Properties createToadstoolMaterial(Block baseBlock){
+        return BlockBehaviour.Properties.copy(baseBlock).color(TOADSTOOL_COLOR);
+    }
+    private static RotatedPillarBlock createToadstoolStem(MaterialColor p_50789_, MaterialColor p_50790_) {
+        return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD,
+                        (p_152624_) -> p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_)
+                .strength(2.0F).sound(SoundType.STEM));
+    }
+
+    public static BlockBehaviour.Properties createGlowshroomMaterial(Block baseBlock){
+        return BlockBehaviour.Properties.copy(baseBlock).color(GLOWSHROOM_COLOR).lightLevel((state) -> glowshroomLight);
     }
     private static RotatedPillarBlock createGlowshroomStem(MaterialColor p_50789_, MaterialColor p_50790_) {
         return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD,
                 (p_152624_) -> p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_)
-                .strength(2.0F).sound(SoundType.WOOD).lightLevel((state) -> glowshroomLight));
+                .strength(2.0F).sound(SoundType.STEM).lightLevel((state) -> glowshroomLight));
     }
 
     /*
@@ -58,36 +69,36 @@ public class ECBlocks {
             () -> createGlowshroomStem(GLOWSHROOM_COLOR, GLOWSHROOM_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> GLOWSHROOM_PLANKS = registerBlock("glowshroom_planks",
-            () -> new Block(createGlowshroomMaterial(Blocks.OAK_PLANKS,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new Block(createGlowshroomMaterial(Blocks.WARPED_PLANKS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GLOWSHROOM_SLAB = registerBlock("glowshroom_slab",
-            () -> new SlabBlock(createGlowshroomMaterial(Blocks.OAK_SLAB,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new SlabBlock(createGlowshroomMaterial(Blocks.WARPED_SLAB)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GLOWSHROOM_STAIRS = registerBlock("glowshroom_stairs",
-            () -> new StairBlock(() -> GLOWSHROOM_PLANKS.get().defaultBlockState(), createGlowshroomMaterial(Blocks.OAK_STAIRS,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new StairBlock(() -> GLOWSHROOM_PLANKS.get().defaultBlockState(), createGlowshroomMaterial(Blocks.WARPED_STAIRS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GLOWSHROOM_PRESSURE_PLATE = registerBlock("glowshroom_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createGlowshroomMaterial(Blocks.OAK_PRESSURE_PLATE,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createGlowshroomMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GLOWSHROOM_FENCE = registerBlock("glowshroom_fence",
-            () -> new FenceBlock(createGlowshroomMaterial(Blocks.OAK_FENCE,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_DECORATIONS);
+            () -> new FenceBlock(createGlowshroomMaterial(Blocks.WARPED_FENCE)), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> GLOWSHROOM_FENCE_GATE = registerBlock("glowshroom_fence_gate",
-            () -> new FenceGateBlock(createGlowshroomMaterial(Blocks.OAK_FENCE_GATE,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_REDSTONE);
+            () -> new FenceGateBlock(createGlowshroomMaterial(Blocks.WARPED_FENCE_GATE)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> GLOWSHROOM_BUTTON = registerBlock("glowshroom_button",
-            () -> new WoodButtonBlock(createGlowshroomMaterial(Blocks.OAK_BUTTON,GLOWSHROOM_COLOR)), CreativeModeTab.TAB_REDSTONE);
+            () -> new WoodButtonBlock(createGlowshroomMaterial(Blocks.WARPED_BUTTON)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> GLOWSHROOM_TRAPDOOR = registerBlock("glowshroom_trapdoor",
-            () -> new TrapDoorBlock(createGlowshroomMaterial(Blocks.OAK_TRAPDOOR,GLOWSHROOM_COLOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new TrapDoorBlock(createGlowshroomMaterial(Blocks.WARPED_TRAPDOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> GLOWSHROOM_DOOR = registerBlock("glowshroom_door",
-            () -> new DoorBlock(createGlowshroomMaterial(Blocks.OAK_DOOR,GLOWSHROOM_COLOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new DoorBlock(createGlowshroomMaterial(Blocks.WARPED_DOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
 
     public static final RegistryObject<Block> GLOWSHROOM_WALL_SIGN = registerBlockWithoutBlockItem("glowshroom_wall_sign",
-            () -> new ModWallSignBlock(createGlowshroomMaterial(Blocks.OAK_WALL_SIGN,GLOWSHROOM_COLOR), ModWoodTypes.GLOWSHROOM));
+            () -> new ModWallSignBlock(createGlowshroomMaterial(Blocks.WARPED_WALL_SIGN), ModWoodTypes.GLOWSHROOM));
     public static final RegistryObject<Block> GLOWSHROOM_SIGN = registerBlockWithoutBlockItem("glowshroom_sign",
-            () -> new ModStandingSignBlock(createGlowshroomMaterial(Blocks.OAK_SIGN,GLOWSHROOM_COLOR), ModWoodTypes.GLOWSHROOM));
+            () -> new ModStandingSignBlock(createGlowshroomMaterial(Blocks.WARPED_SIGN),ModWoodTypes.GLOWSHROOM));
 
     /*
     Toadstool Blocks
     */
     public static final RegistryObject<Block> TOADSTOOL_STEM = registerBlock("toadstool_stem",
-            () -> createGlowshroomStem(TOADSTOOL_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> createToadstoolStem(TOADSTOOL_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> STRIPPED_TOADSTOOL_STEM = registerBlock("stripped_toadstool_stem",
-            () -> createGlowshroomStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> createToadstoolStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> TOADSTOOL_HYPHAE = registerBlock("toadstool_hyphae",
             () -> createGlowshroomStem(TOADSTOOL_SIDE_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -95,28 +106,28 @@ public class ECBlocks {
             () -> createGlowshroomStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> TOADSTOOL_PLANKS = registerBlock("toadstool_planks",
-            () -> new Block(createGlowshroomMaterial(Blocks.OAK_PLANKS,TOADSTOOL_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new Block(createToadstoolMaterial(Blocks.WARPED_PLANKS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_SLAB = registerBlock("toadstool_slab",
-            () -> new SlabBlock(createGlowshroomMaterial(Blocks.OAK_SLAB,TOADSTOOL_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new SlabBlock(createToadstoolMaterial(Blocks.WARPED_SLAB)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_STAIRS = registerBlock("toadstool_stairs",
-            () -> new StairBlock(() -> TOADSTOOL_PLANKS.get().defaultBlockState(), createGlowshroomMaterial(Blocks.OAK_STAIRS,TOADSTOOL_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new StairBlock(() -> TOADSTOOL_PLANKS.get().defaultBlockState(), createToadstoolMaterial(Blocks.WARPED_STAIRS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_PRESSURE_PLATE = registerBlock("toadstool_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createGlowshroomMaterial(Blocks.OAK_PRESSURE_PLATE,TOADSTOOL_COLOR)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createToadstoolMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_FENCE = registerBlock("toadstool_fence",
-            () -> new FenceBlock(createGlowshroomMaterial(Blocks.OAK_FENCE,TOADSTOOL_COLOR)), CreativeModeTab.TAB_DECORATIONS);
+            () -> new FenceBlock(createToadstoolMaterial(Blocks.WARPED_FENCE)), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> TOADSTOOL_FENCE_GATE = registerBlock("toadstool_fence_gate",
-            () -> new FenceGateBlock(createGlowshroomMaterial(Blocks.OAK_FENCE_GATE,TOADSTOOL_COLOR)), CreativeModeTab.TAB_REDSTONE);
+            () -> new FenceGateBlock(createToadstoolMaterial(Blocks.WARPED_FENCE_GATE)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_BUTTON = registerBlock("toadstool_button",
-            () -> new WoodButtonBlock(createGlowshroomMaterial(Blocks.OAK_BUTTON,TOADSTOOL_COLOR)), CreativeModeTab.TAB_REDSTONE);
+            () -> new WoodButtonBlock(createToadstoolMaterial(Blocks.WARPED_BUTTON)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_TRAPDOOR = registerBlock("toadstool_trapdoor",
-            () -> new TrapDoorBlock(createGlowshroomMaterial(Blocks.OAK_TRAPDOOR,TOADSTOOL_COLOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new TrapDoorBlock(createToadstoolMaterial(Blocks.WARPED_TRAPDOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_DOOR = registerBlock("toadstool_door",
-            () -> new DoorBlock(createGlowshroomMaterial(Blocks.OAK_DOOR,TOADSTOOL_COLOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new DoorBlock(createToadstoolMaterial(Blocks.WARPED_DOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
 
     public static final RegistryObject<Block> TOADSTOOL_WALL_SIGN = registerBlockWithoutBlockItem("toadstool_wall_sign",
-            () -> new ModWallSignBlock(createGlowshroomMaterial(Blocks.OAK_WALL_SIGN,TOADSTOOL_COLOR), ModWoodTypes.TOADSTOOL));
+            () -> new ModWallSignBlock(createToadstoolMaterial(Blocks.WARPED_WALL_SIGN), ModWoodTypes.TOADSTOOL));
     public static final RegistryObject<Block> TOADSTOOL_SIGN = registerBlockWithoutBlockItem("toadstool_sign",
-            () -> new ModStandingSignBlock(createGlowshroomMaterial(Blocks.OAK_SIGN,TOADSTOOL_COLOR), ModWoodTypes.TOADSTOOL));
+            () -> new ModStandingSignBlock(createToadstoolMaterial(Blocks.WARPED_SIGN), ModWoodTypes.TOADSTOOL));
 
 
 

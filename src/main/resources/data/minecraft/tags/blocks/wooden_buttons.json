@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "enhanced_compat:glowshroom_button"
+    "enhanced_compat:glowshroom_button",
+	"enhanced_compat:toadstool_button"
   ]
 }

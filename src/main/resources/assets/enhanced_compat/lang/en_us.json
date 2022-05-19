@@ -13,7 +13,22 @@
     "block.enhanced_compat.glowshroom_door": "Glowshroom Door",
     "block.enhanced_compat.glowshroom_trapdoor": "Glowshroom Trapdoor",
     "block.enhanced_compat.glowshroom_sign": "Glowshroom Sign",
+    "item.enhanced_compat.glowshroom_boat": "Glowshroom Boat",
 
-    "item.enhanced_compat.glowshroom_boat": "Glowshroom Boat"
 
+    "block.enhanced_compat.toadstool_stem": "Toadstool Stem",
+    "block.enhanced_compat.stripped_toadstool_stem": "Stripped Toadstool Stem",
+    "block.enhanced_compat.toadstool_hyphae": "Toadstool Hyphae",
+    "block.enhanced_compat.stripped_toadstool_hyphae": "Stripped Toadstool Hyphae",
+    "block.enhanced_compat.toadstool_planks": "Toadstool Planks",
+    "block.enhanced_compat.toadstool_stairs": "Toadstool Stairs",
+    "block.enhanced_compat.toadstool_slab": "Toadstool Slab",
+    "block.enhanced_compat.toadstool_pressure_plate": "Toadstool Pressure Plate",
+    "block.enhanced_compat.toadstool_fence": "Toadstool Fence",
+    "block.enhanced_compat.toadstool_fence_gate": "Toadstool Fence Gate",
+    "block.enhanced_compat.toadstool_button": "Toadstool Button",
+    "block.enhanced_compat.toadstool_door": "Toadstool Door",
+    "block.enhanced_compat.toadstool_trapdoor": "Toadstool Trapdoor",
+    "block.enhanced_compat.toadstool_sign": "Toadstool Sign",
+    "item.enhanced_compat.toadstool_boat": "Toadstool Boat"
 }

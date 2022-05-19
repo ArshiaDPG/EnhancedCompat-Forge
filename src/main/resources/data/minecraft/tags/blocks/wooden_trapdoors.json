@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "enhanced_compat:glowshroom_trapdoor"
+    "enhanced_compat:glowshroom_trapdoor",
+	"enhanced_compat:toadstool_trapdoor"
   ]
 }
