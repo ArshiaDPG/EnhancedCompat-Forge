@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "enhanced_compat:toadstool_planks"
+    ]
+  },
+  "criteria": {
+    "has_toadstool_stem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "enhanced_compat:toadstool_stems"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "enhanced_compat:toadstool_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_toadstool_stem",
+      "has_the_recipe"
+    ]
+  ]
+}

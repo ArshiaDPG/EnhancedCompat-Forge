@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "enhanced_compat:block/toadstool_slab" },
-    "type=top": { "model": "enhanced_compat:block/toadstool_slab_top" },
-    "type=double": { "model": "enhanced_compat:block/toadstool_planks" }
-  }
-}

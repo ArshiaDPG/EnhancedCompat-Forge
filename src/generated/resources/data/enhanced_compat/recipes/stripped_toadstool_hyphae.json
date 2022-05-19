@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "hyphae",
+  "ingredients": [
+    {
+      "item": "enhanced_compat:stripped_toadstool_stem"
+    }
+  ],
+  "result": {
+    "item": "enhanced_compat:stripped_toadstool_hyphae"
+  }
+}

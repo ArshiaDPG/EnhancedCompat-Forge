@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "enhanced_compat:stripped_glowshroom_hyphae"
+    ]
+  },
+  "criteria": {
+    "has_stripped_glowshroom_stem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "enhanced_compat:stripped_glowshroom_stem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "enhanced_compat:stripped_glowshroom_hyphae"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_glowshroom_stem",
+      "has_the_recipe"
+    ]
+  ]
+}

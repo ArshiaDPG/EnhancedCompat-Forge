@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y":    { "model": "enhanced_compat:block/toadstool_stem" },
-    "axis=z":     { "model": "enhanced_compat:block/toadstool_stem", "x": 90 },
-    "axis=x":     { "model": "enhanced_compat:block/toadstool_stem", "x": 90, "y": 90 }
-  }
-}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:toadstool_planks"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:toadstool_trapdoor",
+    "count": 2
+  }
+}

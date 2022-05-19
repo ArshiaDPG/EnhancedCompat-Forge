@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "enhanced_compat:toadstool_planks"
+    }
+  ],
+  "result": {
+    "item": "enhanced_compat:toadstool_button"
+  }
+}

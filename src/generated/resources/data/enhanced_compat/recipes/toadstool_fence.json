@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ESE",
+    "ESE"
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:toadstool_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:toadstool_fence",
+    "count": 3
+  }
+}

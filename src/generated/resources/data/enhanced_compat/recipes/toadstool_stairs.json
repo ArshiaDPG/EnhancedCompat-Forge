@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E  ",
+    "EE ",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:toadstool_planks"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:toadstool_stairs",
+    "count": 4
+  }
+}

@@ -9,13 +9,14 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
-
-//Absolutely broken right now, idk why, where, or when, all I know is that it doesn't work.
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
     public ModRecipeProvider(DataGenerator pGenerator) {
@@ -25,109 +26,154 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
 
-        ShapelessRecipeBuilder.shapeless(ECBlocks.GLOWSHROOM_PLANKS.get())
-                .requires(ECBlocks.GLOWSHROOM_STEM.get())
-                .unlockedBy("has_glowshroom_stem", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECTags.GLOWSHROOM_STEMS).build()))
-                .save(pFinishedRecipeConsumer);
+        createPlankRecipe("glowshroom", ECBlocks.GLOWSHROOM_PLANKS.get(), ECTags.GLOWSHROOM_STEMS, pFinishedRecipeConsumer);
+        createPlankRecipe("toadstool", ECBlocks.TOADSTOOL_PLANKS.get(), ECTags.TOADSTOOL_STEMS, pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_HYPHAE.get(), 3)
-                .define('E', ECBlocks.GLOWSHROOM_STEM.get())
-                .pattern("EE")
-                .pattern("EE")
-                .unlockedBy("has_glowshroom_stem", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_STEM.get()).build()))
-                .save(pFinishedRecipeConsumer);
+        createHyephaeRecipe("glowshroom", ECBlocks.GLOWSHROOM_STEM.get(), ECBlocks.GLOWSHROOM_HYPHAE.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("toadstool", ECBlocks.TOADSTOOL_STEM.get(), ECBlocks.TOADSTOOL_HYPHAE.get(), pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(), 3)
-                .define('E', ECBlocks.STRIPPED_GLOWSHROOM_STEM.get())
-                .pattern("EE")
-                .pattern("EE")
-                .unlockedBy("has_stripped_glowshroom_stem", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.STRIPPED_GLOWSHROOM_STEM.get()).build()))
-                .save(pFinishedRecipeConsumer);
+        createHyephaeRecipe("stripped_glowshroom", ECBlocks.STRIPPED_GLOWSHROOM_STEM.get(), ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("stripped_toadstool", ECBlocks.STRIPPED_TOADSTOOL_STEM.get(), ECBlocks.STRIPPED_TOADSTOOL_HYPHAE.get(), pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_STAIRS.get(), 4)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
-                .pattern("E")
-                .pattern("EE")
+        createStairsRecipe("glowshroom", ECBlocks.GLOWSHROOM_STAIRS.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createStairsRecipe("toadstool", ECBlocks.TOADSTOOL_STAIRS.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createSlabRecipe("glowshroom", ECBlocks.GLOWSHROOM_SLAB.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createSlabRecipe("toadstool", ECBlocks.TOADSTOOL_SLAB.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createPressurePlateRecipe("glowshroom", ECBlocks.GLOWSHROOM_PRESSURE_PLATE.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createPressurePlateRecipe("toadstool", ECBlocks.TOADSTOOL_PRESSURE_PLATE.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createFenceRecipe("glowshroom", ECBlocks.GLOWSHROOM_FENCE.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createFenceRecipe("toadstool", ECBlocks.TOADSTOOL_FENCE.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createFenceGateRecipe("glowshroom", ECBlocks.GLOWSHROOM_FENCE_GATE.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createFenceGateRecipe("toadstool", ECBlocks.TOADSTOOL_FENCE_GATE.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createButtonRecipe("glowshroom", ECBlocks.GLOWSHROOM_BUTTON.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createButtonRecipe("toadstool", ECBlocks.TOADSTOOL_BUTTON.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createSignRecipe("glowshroom", ECItems.GLOWSHROOM_SIGN.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createSignRecipe("toadstool", ECItems.TOADSTOOL_SIGN.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createBoatRecipe(ECItems.GLOWSHROOM_BOAT_ITEM.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createBoatRecipe(ECItems.TOADSTOOL_BOAT_ITEM.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createTrapdoorRecipe("glowshroom", ECBlocks.GLOWSHROOM_TRAPDOOR.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createTrapdoorRecipe("toadstool", ECBlocks.TOADSTOOL_TRAPDOOR.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+        createDoorRecipe("glowshroom", ECBlocks.GLOWSHROOM_DOOR.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
+        createDoorRecipe("toadstool", ECBlocks.TOADSTOOL_DOOR.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
+
+    }
+
+    public static void createPlankRecipe(String woodName, ItemLike resultItem, TagKey<Item> neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        ShapelessRecipeBuilder.shapeless(resultItem)
+                .requires(neededItem)
+                .group("planks")
+                .unlockedBy("has_" + woodName +"_stem", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
+                .save(pFinishedRecipeConsumer);
+    }
+    public static void createHyephaeRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        ShapelessRecipeBuilder.shapeless(resultItem)
+                .requires(neededItem)
+                .group("hyphae")
+                .unlockedBy("has_" + woodName +"_stem", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
+                .save(pFinishedRecipeConsumer);
+    }
+    public static void createStairsRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        ShapedRecipeBuilder.shaped(resultItem, 4)
+                .define('E', neededItem)
+                .pattern("E  ")
+                .pattern("EE ")
                 .pattern("EEE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_"+ woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
-
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_SLAB.get(), 6)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
+    }
+    public static void createSlabRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 6)
+                .define('E', neededItem)
                 .pattern("EEE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
+    }
 
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_PRESSURE_PLATE.get(), 1)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
+    public static void createPressurePlateRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 1)
+                .define('E', neededItem)
                 .pattern("EE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
-
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_FENCE.get(), 3)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
+    }
+    public static void createFenceRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 3)
+                .define('E', neededItem)
                 .define('S', Items.STICK)
                 .pattern("ESE")
                 .pattern("ESE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
+    }
 
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_FENCE_GATE.get(), 1)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
+    public static void createFenceGateRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 1)
+                .define('E', neededItem)
                 .define('S', Items.STICK)
                 .pattern("SES")
                 .pattern("SES")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(ECBlocks.GLOWSHROOM_BUTTON.get())
-                .requires(ECBlocks.GLOWSHROOM_STEM.get())
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+    }
+    public static void createButtonRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        ShapelessRecipeBuilder.shapeless(resultItem)
+                .requires(neededItem)
+                .unlockedBy("has_" + woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
-
-        ShapedRecipeBuilder.shaped(ECItems.GLOWSHROOM_SIGN.get(), 1)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
+    }
+    public static void createSignRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        ShapedRecipeBuilder.shaped(resultItem, 3)
+                .define('E', neededItem)
                 .define('S', Items.STICK)
                 .pattern("EEE")
                 .pattern("EEE")
                 .pattern(" S ")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
-                .save(pFinishedRecipeConsumer);
-
-//        ShapedRecipeBuilder.shaped(ECItems.GLOWSHROOM_BOAT_ITEM.get(), 2)
-//                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
-//                .pattern("E E")
-//                .pattern("EEE")
-//                .unlockedBy("in_water", insideOf(Blocks.WATER))
-//                .save(pFinishedRecipeConsumer);
-
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_TRAPDOOR.get(), 2)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
-                .pattern("EEE")
-                .pattern("EEE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
-                .save(pFinishedRecipeConsumer);
-
-        ShapedRecipeBuilder.shaped(ECBlocks.GLOWSHROOM_DOOR.get(), 3)
-                .define('E', ECBlocks.GLOWSHROOM_PLANKS.get())
-                .pattern("EE")
-                .pattern("EE")
-                .pattern("EE")
-                .unlockedBy("has_glowshroom_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(ECBlocks.GLOWSHROOM_PLANKS.get()).build()))
+                .unlockedBy("has_" + woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
                 .save(pFinishedRecipeConsumer);
     }
-
-
+    public static void createBoatRecipe(ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 1)
+                .define('E', neededItem)
+                .pattern("E E")
+                .pattern("EEE")
+                .unlockedBy("in_water", insideOf(Blocks.WATER))
+                .save(pFinishedRecipeConsumer);
+    }
+    public static void createTrapdoorRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 2)
+                .define('E', neededItem)
+                .pattern("EEE")
+                .pattern("EEE")
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
+                .save(pFinishedRecipeConsumer);
+    }
+    public static void createDoorRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(resultItem, 3)
+                .define('E', neededItem)
+                .pattern("EE")
+                .pattern("EE")
+                .pattern("EE")
+                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(neededItem).build()))
+                .save(pFinishedRecipeConsumer);
+    }
 }

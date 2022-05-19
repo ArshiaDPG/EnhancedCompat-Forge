@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EE"
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:glowshroom_planks"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:glowshroom_pressure_plate"
+  }
+}

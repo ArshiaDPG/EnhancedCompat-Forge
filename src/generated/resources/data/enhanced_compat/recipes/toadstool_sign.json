@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "EEE",
+    " S "
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:toadstool_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:toadstool_sign",
+    "count": 3
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ESE",
+    "ESE"
+  ],
+  "key": {
+    "E": {
+      "item": "enhanced_compat:glowshroom_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "enhanced_compat:glowshroom_fence",
+    "count": 3
+  }
+}

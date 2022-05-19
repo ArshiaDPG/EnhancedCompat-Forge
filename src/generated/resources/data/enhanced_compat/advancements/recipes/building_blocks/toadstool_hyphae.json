@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "enhanced_compat:toadstool_hyphae"
+    ]
+  },
+  "criteria": {
+    "has_toadstool_stem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "enhanced_compat:toadstool_stem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "enhanced_compat:toadstool_hyphae"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_toadstool_stem",
+      "has_the_recipe"
+    ]
+  ]
+}
