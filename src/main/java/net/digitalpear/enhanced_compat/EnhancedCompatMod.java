@@ -1,6 +1,6 @@
 package net.digitalpear.enhanced_compat;
 
-import net.digitalpear.enhanced_compat.common.entity.ModWoodTypes;
+import net.digitalpear.enhanced_compat.common.block.entity.ModWoodTypes;
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.digitalpear.enhanced_compat.init.ECData;
 import net.digitalpear.enhanced_compat.init.ECItems;
@@ -26,6 +26,7 @@ public class EnhancedCompatMod {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
+
     public EnhancedCompatMod() {
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -42,17 +43,20 @@ public class EnhancedCompatMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ECData.registerStrippables();
-        ECData.registerStrippables();
         event.enqueueWork(() -> {
+            ECData.registerFlammables();
+            ECData.registerStrippables();
             Sheets.addWoodType(ModWoodTypes.GLOWSHROOM);
+            Sheets.addWoodType(ModWoodTypes.TOADSTOOL);
         });
     }
+
     private void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ECBlocks.GLOWSHROOM_DOOR.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ECBlocks.GLOWSHROOM_TRAPDOOR.get(), RenderType.cutoutMipped());
 
         WoodType.register(ModWoodTypes.GLOWSHROOM);
+        WoodType.register(ModWoodTypes.TOADSTOOL);
         BlockEntityRenderers.register(ECBlocks.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
     }
 

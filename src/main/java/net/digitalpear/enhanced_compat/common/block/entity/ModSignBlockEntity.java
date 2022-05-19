@@ -1,4 +1,4 @@
-package net.digitalpear.enhanced_compat.common.entity;
+package net.digitalpear.enhanced_compat.common.block.entity;
 
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.minecraft.core.BlockPos;

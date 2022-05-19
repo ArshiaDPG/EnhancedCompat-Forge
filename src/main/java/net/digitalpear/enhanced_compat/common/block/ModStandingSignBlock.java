@@ -1,6 +1,6 @@
 package net.digitalpear.enhanced_compat.common.block;
 
-import net.digitalpear.enhanced_compat.common.entity.ModSignBlockEntity;
+import net.digitalpear.enhanced_compat.common.block.entity.ModSignBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ModStandingSignBlock extends StandingSignBlock {
-    public ModStandingSignBlock(Properties p_56990_, WoodType p_56991_) {
-        super(p_56990_, p_56991_);
+    public ModStandingSignBlock(Properties properties, WoodType woodType) {
+        super(properties, woodType);
     }
 
     @Override
