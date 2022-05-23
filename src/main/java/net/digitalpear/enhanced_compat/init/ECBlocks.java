@@ -1,7 +1,5 @@
 package net.digitalpear.enhanced_compat.init;
 
-import biomesoplenty.api.block.BOPBlocks;
-import com.teamaurora.enhanced_mushrooms.core.registry.EMBlocks;
 import net.digitalpear.enhanced_compat.EnhancedCompatMod;
 import net.digitalpear.enhanced_compat.common.block.ModStandingSignBlock;
 import net.digitalpear.enhanced_compat.common.block.ModWallSignBlock;

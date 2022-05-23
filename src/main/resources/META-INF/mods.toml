@@ -7,7 +7,7 @@ modId = "enhanced_compat" #mandatory
 version = "1.0.0" #mandatory
 # A display name for the mod
 displayName = "Enhanced Compatibility" #mandatory
-authors = "DigitalPear" #optional
+authors = "DigitalPear, ExuberantOctopus" #optional
 
 description = '''
 New wood variants for the mushrooms from other mods.
