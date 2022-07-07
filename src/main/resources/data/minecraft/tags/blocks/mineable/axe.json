@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "enhanced_compat:glowshroom_planks",
+    "enhanced_compat:toadstool_planks",
+    "enhanced_compat:glowshroom_stairs",
+    "enhanced_compat:toadstool_stairs",
+    "enhanced_compat:glowshroom_slab",
+    "enhanced_compat:toadstool_slab",
+    "enhanced_compat:glowshroom_fence",
+    "enhanced_compat:toadstool_fence",
+    "enhanced_compat:glowshroom_door",
+    "enhanced_compat:toadstool_door",
+    "enhanced_compat:glowshroom_button",
+    "enhanced_compat:toadstool_button",
+    "enhanced_compat:glowshroom_wall_sign",
+    "enhanced_compat:toadstool_wall_sign",
+    "enhanced_compat:glowshroom_sign",
+    "enhanced_compat:toadstool_sign",
+    "enhanced_compat:glowshroom_trapdoor",
+    "enhanced_compat:toadstool_trapdoor",
+    "#enhanced_compat:glowshroom_stems",
+	"#enhanced_compat:toadstool_stems"
+  ]
+}
