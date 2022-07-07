@@ -22,12 +22,12 @@ group = 'net.digitalpear'
 version = "${project.mod_version}"
 
 java {
-    archivesBaseName = 'enhanced_compat'
+    archivesBaseName = "${project.modId}"
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
 minecraft {
-    mappings channel: 'parchment', version: '1.18.1-2022.03.06-1.18.2'
+    mappings channel: 'parchment', version: "${project.parchment}"
 
     runs {
         client {
@@ -94,7 +94,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'enhanced_compat'
+            property 'forge.enabledGameTestNamespaces', "${project.modId}"
 
             mods {
                 enhancedcompatibility {
@@ -119,7 +119,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'enhanced_compat', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', "${project.modId}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 enhancedcompatibility {
@@ -146,7 +146,7 @@ repositories {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.19'
+    minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
 
     implementation fg.deobf("curse.maven:enhanced_mushrooms-383725:${project.enhancedMushrooms}")
     implementation fg.deobf("curse.maven:pollen-544350:${project.pollen}")

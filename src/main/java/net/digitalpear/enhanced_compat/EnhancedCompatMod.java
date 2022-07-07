@@ -30,16 +30,17 @@ public class EnhancedCompatMod {
     public EnhancedCompatMod() {
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        // Register the setup method for modloading
 
         ECBlocks.init(bus);
         ECItems.init(bus);
 
+
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        LOGGER.info("Somehow Enhanced Compat works fine.");
     }
 
     private void setup(final FMLCommonSetupEvent event) {

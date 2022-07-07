@@ -25,10 +25,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         logBlock((RotatedPillarBlock) ECBlocks.STRIPPED_GLOWSHROOM_STEM.get());
         logBlock((RotatedPillarBlock) ECBlocks.STRIPPED_TOADSTOOL_STEM.get());
 
-        logBlock((RotatedPillarBlock) ECBlocks.GLOWSHROOM_HYPHAE.get());
-        logBlock((RotatedPillarBlock) ECBlocks.TOADSTOOL_HYPHAE.get());
-        logBlock((RotatedPillarBlock) ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get());
-        logBlock((RotatedPillarBlock) ECBlocks.STRIPPED_TOADSTOOL_HYPHAE.get());
+        hyphaeBlock((RotatedPillarBlock) ECBlocks.GLOWSHROOM_STEM.get());
+        hyphaeBlock((RotatedPillarBlock) ECBlocks.TOADSTOOL_STEM.get());
+        hyphaeBlock((RotatedPillarBlock) ECBlocks.STRIPPED_GLOWSHROOM_STEM.get());
+        hyphaeBlock((RotatedPillarBlock) ECBlocks.STRIPPED_TOADSTOOL_STEM.get());
 
         stairsBlock((StairBlock) ECBlocks.GLOWSHROOM_STAIRS.get(), blockTexture(GLOWSHROOM));
         stairsBlock((StairBlock) ECBlocks.TOADSTOOL_STAIRS.get(), blockTexture(TOADSTOOL));
@@ -54,7 +54,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         doorBlock((DoorBlock) ECBlocks.GLOWSHROOM_DOOR.get(), blockTexture(ECBlocks.GLOWSHROOM_DOOR.get()), blockTexture(GLOWSHROOM));
         doorBlock((DoorBlock) ECBlocks.TOADSTOOL_DOOR.get(), blockTexture(ECBlocks.TOADSTOOL_DOOR.get()), blockTexture(TOADSTOOL));
 
-
-
+    }
+    public void hyphaeBlock(RotatedPillarBlock block) {
+        axisBlock(block, blockTexture(block), blockTexture(block));
     }
 }

@@ -18,8 +18,11 @@ public class ECItems {
 
 
     //Boats use pollen, because I'm lazy and it's easy
-    public static final Supplier<Item> GLOWSHROOM_BOAT_ITEM = ITEMS.register("glowshroom_boat", () -> new PollinatedBoatItem(ECEntities.GLOWSHROOM_BOAT, new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TRANSPORTATION)));
-    public static final Supplier<Item> TOADSTOOL_BOAT_ITEM = ITEMS.register("toadstool_boat", () -> new PollinatedBoatItem(ECEntities.TOADSTOOL_BOAT, new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TRANSPORTATION)));
+    public static final Supplier<Item> GLOWSHROOM_BOAT_ITEM = ITEMS.register("glowshroom_boat", () -> new PollinatedBoatItem(ECEntities.GLOWSHROOM_BOAT,
+            new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TRANSPORTATION)));
+    public static final Supplier<Item> TOADSTOOL_BOAT_ITEM = ITEMS.register("toadstool_boat", () -> new PollinatedBoatItem(ECEntities.TOADSTOOL_BOAT,
+            new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TRANSPORTATION)));
+
 
 
 

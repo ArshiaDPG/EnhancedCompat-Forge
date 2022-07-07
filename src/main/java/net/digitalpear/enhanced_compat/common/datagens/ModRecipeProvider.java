@@ -1,9 +1,9 @@
 package net.digitalpear.enhanced_compat.common.datagens;
 
+import com.google.common.collect.ImmutableList;
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.digitalpear.enhanced_compat.init.ECItems;
 import net.digitalpear.enhanced_compat.init.ECTags;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -19,6 +19,19 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+
+    public static final ImmutableList<ItemLike> GLOWSHROOM_STEMS = ImmutableList.of(
+            ECBlocks.GLOWSHROOM_HYPHAE.get(),
+            ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(),
+            ECBlocks.GLOWSHROOM_STEM.get(),
+            ECBlocks.STRIPPED_GLOWSHROOM_STEM.get());
+
+    public static final ImmutableList<ItemLike> TOADSTOOL_STEMS = ImmutableList.of(
+            ECBlocks.TOADSTOOL_HYPHAE.get(),
+            ECBlocks.STRIPPED_TOADSTOOL_HYPHAE.get(),
+            ECBlocks.TOADSTOOL_STEM.get(),
+            ECBlocks.STRIPPED_TOADSTOOL_STEM.get());
+
     public ModRecipeProvider(DataGenerator pGenerator) {
         super(pGenerator);
     }
@@ -26,14 +39,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
 
-        createPlankRecipe("glowshroom", ECBlocks.GLOWSHROOM_PLANKS.get(), ECTags.GLOWSHROOM_STEMS, pFinishedRecipeConsumer);
-        createPlankRecipe("toadstool", ECBlocks.TOADSTOOL_PLANKS.get(), ECTags.TOADSTOOL_STEMS, pFinishedRecipeConsumer);
+        planksFromStems(pFinishedRecipeConsumer, ECBlocks.GLOWSHROOM_PLANKS.get(), ECTags.GLOWSHROOM_STEMS);
+        planksFromStems(pFinishedRecipeConsumer, ECBlocks.TOADSTOOL_PLANKS.get(), ECTags.TOADSTOOL_STEMS);
 
-        createHyephaeRecipe("glowshroom", ECBlocks.GLOWSHROOM_STEM.get(), ECBlocks.GLOWSHROOM_HYPHAE.get(), pFinishedRecipeConsumer);
-        createHyephaeRecipe("toadstool", ECBlocks.TOADSTOOL_STEM.get(), ECBlocks.TOADSTOOL_HYPHAE.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("glowshroom", ECBlocks.GLOWSHROOM_HYPHAE.get(), ECBlocks.GLOWSHROOM_STEM.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("toadstool", ECBlocks.TOADSTOOL_HYPHAE.get(), ECBlocks.TOADSTOOL_STEM.get(), pFinishedRecipeConsumer);
 
-        createHyephaeRecipe("stripped_glowshroom", ECBlocks.STRIPPED_GLOWSHROOM_STEM.get(), ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(), pFinishedRecipeConsumer);
-        createHyephaeRecipe("stripped_toadstool", ECBlocks.STRIPPED_TOADSTOOL_STEM.get(), ECBlocks.STRIPPED_TOADSTOOL_HYPHAE.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("stripped_glowshroom", ECBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(), ECBlocks.STRIPPED_GLOWSHROOM_STEM.get(), pFinishedRecipeConsumer);
+        createHyephaeRecipe("stripped_toadstool", ECBlocks.STRIPPED_TOADSTOOL_HYPHAE.get(), ECBlocks.STRIPPED_TOADSTOOL_STEM.get(), pFinishedRecipeConsumer);
 
         createStairsRecipe("glowshroom", ECBlocks.GLOWSHROOM_STAIRS.get(), ECBlocks.GLOWSHROOM_PLANKS.get(), pFinishedRecipeConsumer);
         createStairsRecipe("toadstool", ECBlocks.TOADSTOOL_STAIRS.get(), ECBlocks.TOADSTOOL_PLANKS.get(), pFinishedRecipeConsumer);
@@ -67,20 +80,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     }
 
-    public static void createPlankRecipe(String woodName, ItemLike resultItem, TagKey<Item> neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
-        ShapelessRecipeBuilder.shapeless(resultItem)
-                .requires(neededItem)
+    protected static void planksFromStems(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike result, TagKey<Item> required) {
+        ShapelessRecipeBuilder.shapeless(result, 4)
+                .requires(required)
                 .group("planks")
-                .unlockedBy("has_" + woodName +"_stem", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_stem", has(required))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createHyephaeRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
-        ShapelessRecipeBuilder.shapeless(resultItem)
-                .requires(neededItem)
+        ShapedRecipeBuilder.shaped(resultItem, 3)
+                .define('E', neededItem)
+                .pattern("EE")
+                .pattern("EE")
                 .group("hyphae")
-                .unlockedBy("has_" + woodName +"_stem", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_" + woodName +"_stem", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createStairsRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
@@ -89,16 +102,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("E  ")
                 .pattern("EE ")
                 .pattern("EEE")
-                .unlockedBy("has_"+ woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+ woodName +"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createSlabRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         ShapedRecipeBuilder.shaped(resultItem, 6)
                 .define('E', neededItem)
                 .pattern("EEE")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
 
@@ -106,8 +117,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(resultItem, 1)
                 .define('E', neededItem)
                 .pattern("EE")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createFenceRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
@@ -116,8 +126,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.STICK)
                 .pattern("ESE")
                 .pattern("ESE")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
 
@@ -127,15 +136,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.STICK)
                 .pattern("SES")
                 .pattern("SES")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createButtonRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
         ShapelessRecipeBuilder.shapeless(resultItem)
                 .requires(neededItem)
-                .unlockedBy("has_" + woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_" + woodName +"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createSignRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer){
@@ -145,8 +152,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("EEE")
                 .pattern("EEE")
                 .pattern(" S ")
-                .unlockedBy("has_" + woodName +"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_" + woodName +"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createBoatRecipe(ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
@@ -162,8 +168,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('E', neededItem)
                 .pattern("EEE")
                 .pattern("EEE")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
     public static void createDoorRecipe(String woodName, ItemLike resultItem, ItemLike neededItem, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
@@ -172,8 +177,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("EE")
                 .pattern("EE")
                 .pattern("EE")
-                .unlockedBy("has_"+woodName+"_planks", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(neededItem).build()))
+                .unlockedBy("has_"+woodName+"_planks", has(neededItem))
                 .save(pFinishedRecipeConsumer);
     }
 }

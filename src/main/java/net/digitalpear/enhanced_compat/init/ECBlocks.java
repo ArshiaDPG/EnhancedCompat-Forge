@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -33,7 +34,8 @@ public class ECBlocks {
 
     //Default values for Toadstool blocks
     public static final MaterialColor TOADSTOOL_COLOR = MaterialColor.COLOR_ORANGE;
-    public static final MaterialColor TOADSTOOL_SIDE_COLOR = MaterialColor.SNOW;
+    public static final MaterialColor TOADSTOOL_SIDE_COLOR = MaterialColor.SAND;
+
 
     public static BlockBehaviour.Properties createToadstoolMaterial(Block baseBlock){
         return BlockBehaviour.Properties.copy(baseBlock).color(TOADSTOOL_COLOR);
@@ -52,6 +54,7 @@ public class ECBlocks {
                 (p_152624_) -> p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_)
                 .strength(2.0F).sound(SoundType.STEM).lightLevel((state) -> glowshroomLight));
     }
+
 
     /*
     Glowshroom Blocks

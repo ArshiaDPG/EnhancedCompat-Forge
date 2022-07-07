@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_toadstool_stem": {
+    "has_stem": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_toadstool_stem",
+      "has_stem",
       "has_the_recipe"
     ]
   ]

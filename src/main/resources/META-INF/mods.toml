@@ -4,10 +4,10 @@ license = "Apache 2.0"
 [[mods]] #mandatory
 # The modid of the mod
 modId = "enhanced_compat" #mandatory
-version = "1.0.0" #mandatory
+version = "0.5.0" #mandatory
 # A display name for the mod
 displayName = "Enhanced Compatibility" #mandatory
-authors = "DigitalPear, ExuberantOctopus" #optional
+credits = "DigitalPear, ExuberantOctopus" #optional
 
 description = '''
 New wood variants for the mushrooms from other mods.
