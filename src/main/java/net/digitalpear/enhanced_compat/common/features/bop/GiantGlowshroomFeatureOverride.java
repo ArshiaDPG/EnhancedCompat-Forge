@@ -1,8 +1,7 @@
-package net.digitalpear.enhanced_compat.mixin;
+package net.digitalpear.enhanced_compat.common.features.bop;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.util.SimpleBlockPredicate;
-import biomesoplenty.common.worldgen.feature.misc.GiantGlowshroomFeature;
 import com.mojang.serialization.Codec;
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.minecraft.core.BlockPos;
@@ -15,20 +14,15 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.Random;
 
-@Mixin(GiantGlowshroomFeature.class)
-public class GiantGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguration> {
-    protected SimpleBlockPredicate placeOn = (world, pos) -> {
-        return world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK || world.getBlockState(pos).getBlock() == Blocks.MYCELIUM || world.getBlockState(pos).getBlock() == Blocks.STONE || world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE || world.getBlockState(pos).getBlock() == BOPBlocks.GLOWING_MOSS_BLOCK || world.getBlockState(pos).getBlock() == BOPBlocks.MUD;
-    };
-    protected SimpleBlockPredicate replace = (world, pos) -> {
-        return TreeFeature.isAirOrLeaves(world, pos) || world.getBlockState(pos).getBlock() instanceof BushBlock || world.getBlockState(pos).getBlock() == BOPBlocks.GLOWING_MOSS_CARPET || world.getBlockState(pos).getBlock() == Blocks.MOSS_CARPET;
-    };
+public class GiantGlowshroomFeatureOverride extends Feature<NoneFeatureConfiguration> {
 
-    public GiantGlowshroomFeatureMixin(Codec<NoneFeatureConfiguration> deserializer) {
+    protected SimpleBlockPredicate placeOn = (world, pos) -> world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK || world.getBlockState(pos).getBlock() == Blocks.MYCELIUM || world.getBlockState(pos).getBlock() == Blocks.STONE || world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE || world.getBlockState(pos).getBlock() == BOPBlocks.GLOWING_MOSS_BLOCK || world.getBlockState(pos).getBlock() == BOPBlocks.MUD;
+    protected SimpleBlockPredicate replace = (world, pos) -> TreeFeature.isAirOrLeaves(world, pos) || world.getBlockState(pos).getBlock() instanceof BushBlock || world.getBlockState(pos).getBlock() == BOPBlocks.GLOWING_MOSS_CARPET || world.getBlockState(pos).getBlock() == Blocks.MOSS_CARPET;
+
+    public GiantGlowshroomFeatureOverride(Codec<NoneFeatureConfiguration> deserializer) {
         super(deserializer);
     }
 
@@ -36,9 +30,6 @@ public class GiantGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguratio
         WorldGenLevel world = featurePlaceContext.level();
         Random rand = featurePlaceContext.random();
         BlockPos startPos = featurePlaceContext.origin();
-
-        for (NoneFeatureConfiguration var6 = featurePlaceContext.config(); startPos.getY() > -64 && this.replace.matches(world, startPos); startPos = startPos.below()) {
-        }
 
         if (!this.placeOn.matches(world, startPos.offset(0, 0, 0))) {
             return false;
@@ -114,4 +105,5 @@ public class GiantGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguratio
 
         return true;
     }
+
 }

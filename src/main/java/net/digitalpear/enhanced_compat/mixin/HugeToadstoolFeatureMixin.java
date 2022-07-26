@@ -40,9 +40,6 @@ public class HugeToadstoolFeatureMixin extends Feature<NoneFeatureConfiguration>
         Random rand = featurePlaceContext.random();
         BlockPos startPos = featurePlaceContext.origin();
 
-        for(NoneFeatureConfiguration var6 = (NoneFeatureConfiguration)featurePlaceContext.config(); startPos.getY() > 1 && this.replace.matches(world, startPos); startPos = startPos.below()) {
-        }
-
         if (!this.placeOn.matches(world, startPos.offset(0, 0, 0))) {
             return false;
         } else if (!this.checkSpace(world, startPos.above())) {

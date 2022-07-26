@@ -3,6 +3,7 @@ package net.digitalpear.enhanced_compat;
 import net.digitalpear.enhanced_compat.common.block.entity.ModWoodTypes;
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.digitalpear.enhanced_compat.init.ECData;
+import net.digitalpear.enhanced_compat.init.ECFeatures;
 import net.digitalpear.enhanced_compat.init.ECItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -33,8 +34,6 @@ public class EnhancedCompatMod {
 
         ECBlocks.init(bus);
         ECItems.init(bus);
-
-
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
 
@@ -56,9 +55,11 @@ public class EnhancedCompatMod {
         ItemBlockRenderTypes.setRenderLayer(ECBlocks.GLOWSHROOM_DOOR.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ECBlocks.GLOWSHROOM_TRAPDOOR.get(), RenderType.cutoutMipped());
 
+        ItemBlockRenderTypes.setRenderLayer(ECBlocks.TOADSTOOL_DOOR.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ECBlocks.TOADSTOOL_TRAPDOOR.get(), RenderType.cutoutMipped());
+
         WoodType.register(ModWoodTypes.GLOWSHROOM);
         WoodType.register(ModWoodTypes.TOADSTOOL);
         BlockEntityRenderers.register(ECBlocks.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
     }
-
 }

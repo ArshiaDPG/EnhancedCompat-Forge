@@ -39,9 +39,6 @@ public class SmallToadstoolFeatureMixin extends Feature<NoneFeatureConfiguration
         Random rand = featurePlaceContext.random();
         BlockPos startPos = featurePlaceContext.origin();
 
-        for(NoneFeatureConfiguration var6 = (NoneFeatureConfiguration)featurePlaceContext.config(); startPos.getY() > 1 && this.replace.matches(world, startPos); startPos = startPos.below()) {
-        }
-
         if (!this.placeOn.matches(world, startPos.offset(0, 0, 0))) {
             return false;
         } else if (!this.checkSpace(world, startPos.above())) {
@@ -54,7 +51,7 @@ public class SmallToadstoolFeatureMixin extends Feature<NoneFeatureConfiguration
                 this.setBlock(world, pos.above(y), ECBlocks.TOADSTOOL_STEM.get().defaultBlockState());
             }
 
-            this.setBlock(world, pos.offset(0, height, 0), (BlockState) BOPBlocks.TOADSTOOL_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false));
+            this.setBlock(world, pos.offset(0, height, 0), BOPBlocks.TOADSTOOL_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false));
             return true;
         }
     }

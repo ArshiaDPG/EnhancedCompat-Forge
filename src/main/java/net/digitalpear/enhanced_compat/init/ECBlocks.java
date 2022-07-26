@@ -9,7 +9,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -37,10 +36,10 @@ public class ECBlocks {
     public static final MaterialColor TOADSTOOL_SIDE_COLOR = MaterialColor.SAND;
 
 
-    public static BlockBehaviour.Properties createToadstoolMaterial(Block baseBlock){
+    public static BlockBehaviour.Properties createFungusMaterial(Block baseBlock){
         return BlockBehaviour.Properties.copy(baseBlock).color(TOADSTOOL_COLOR);
     }
-    private static RotatedPillarBlock createToadstoolStem(MaterialColor p_50789_, MaterialColor p_50790_) {
+    private static RotatedPillarBlock createFungusStem(MaterialColor p_50789_, MaterialColor p_50790_) {
         return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD,
                         (p_152624_) -> p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_)
                 .strength(2.0F).sound(SoundType.STEM));
@@ -76,7 +75,7 @@ public class ECBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_STAIRS = registerBlock("glowshroom_stairs",
             () -> new StairBlock(() -> GLOWSHROOM_PLANKS.get().defaultBlockState(), createGlowshroomMaterial(Blocks.WARPED_STAIRS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GLOWSHROOM_PRESSURE_PLATE = registerBlock("glowshroom_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createGlowshroomMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createGlowshroomMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> GLOWSHROOM_FENCE = registerBlock("glowshroom_fence",
             () -> new FenceBlock(createGlowshroomMaterial(Blocks.WARPED_FENCE)), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> GLOWSHROOM_FENCE_GATE = registerBlock("glowshroom_fence_gate",
@@ -97,9 +96,9 @@ public class ECBlocks {
     Toadstool Blocks
     */
     public static final RegistryObject<Block> TOADSTOOL_STEM = registerBlock("toadstool_stem",
-            () -> createToadstoolStem(TOADSTOOL_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> createFungusStem(TOADSTOOL_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> STRIPPED_TOADSTOOL_STEM = registerBlock("stripped_toadstool_stem",
-            () -> createToadstoolStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> createFungusStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> TOADSTOOL_HYPHAE = registerBlock("toadstool_hyphae",
             () -> createGlowshroomStem(TOADSTOOL_SIDE_COLOR, TOADSTOOL_SIDE_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
@@ -107,28 +106,28 @@ public class ECBlocks {
             () -> createGlowshroomStem(TOADSTOOL_COLOR, TOADSTOOL_COLOR), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> TOADSTOOL_PLANKS = registerBlock("toadstool_planks",
-            () -> new Block(createToadstoolMaterial(Blocks.WARPED_PLANKS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new Block(createFungusMaterial(Blocks.WARPED_PLANKS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_SLAB = registerBlock("toadstool_slab",
-            () -> new SlabBlock(createToadstoolMaterial(Blocks.WARPED_SLAB)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new SlabBlock(createFungusMaterial(Blocks.WARPED_SLAB)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_STAIRS = registerBlock("toadstool_stairs",
-            () -> new StairBlock(() -> TOADSTOOL_PLANKS.get().defaultBlockState(), createToadstoolMaterial(Blocks.WARPED_STAIRS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new StairBlock(() -> TOADSTOOL_PLANKS.get().defaultBlockState(), createFungusMaterial(Blocks.WARPED_STAIRS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> TOADSTOOL_PRESSURE_PLATE = registerBlock("toadstool_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createToadstoolMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, createFungusMaterial(Blocks.WARPED_PRESSURE_PLATE)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_FENCE = registerBlock("toadstool_fence",
-            () -> new FenceBlock(createToadstoolMaterial(Blocks.WARPED_FENCE)), CreativeModeTab.TAB_DECORATIONS);
+            () -> new FenceBlock(createFungusMaterial(Blocks.WARPED_FENCE)), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> TOADSTOOL_FENCE_GATE = registerBlock("toadstool_fence_gate",
-            () -> new FenceGateBlock(createToadstoolMaterial(Blocks.WARPED_FENCE_GATE)), CreativeModeTab.TAB_REDSTONE);
+            () -> new FenceGateBlock(createFungusMaterial(Blocks.WARPED_FENCE_GATE)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_BUTTON = registerBlock("toadstool_button",
-            () -> new WoodButtonBlock(createToadstoolMaterial(Blocks.WARPED_BUTTON)), CreativeModeTab.TAB_REDSTONE);
+            () -> new WoodButtonBlock(createFungusMaterial(Blocks.WARPED_BUTTON)), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_TRAPDOOR = registerBlock("toadstool_trapdoor",
-            () -> new TrapDoorBlock(createToadstoolMaterial(Blocks.WARPED_TRAPDOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new TrapDoorBlock(createFungusMaterial(Blocks.WARPED_TRAPDOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
     public static final RegistryObject<Block> TOADSTOOL_DOOR = registerBlock("toadstool_door",
-            () -> new DoorBlock(createToadstoolMaterial(Blocks.WARPED_DOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
+            () -> new DoorBlock(createFungusMaterial(Blocks.WARPED_DOOR).noOcclusion()), CreativeModeTab.TAB_REDSTONE);
 
     public static final RegistryObject<Block> TOADSTOOL_WALL_SIGN = registerBlockWithoutBlockItem("toadstool_wall_sign",
-            () -> new ModWallSignBlock(createToadstoolMaterial(Blocks.WARPED_WALL_SIGN), ModWoodTypes.TOADSTOOL));
+            () -> new ModWallSignBlock(createFungusMaterial(Blocks.WARPED_WALL_SIGN), ModWoodTypes.TOADSTOOL));
     public static final RegistryObject<Block> TOADSTOOL_SIGN = registerBlockWithoutBlockItem("toadstool_sign",
-            () -> new ModStandingSignBlock(createToadstoolMaterial(Blocks.WARPED_SIGN), ModWoodTypes.TOADSTOOL));
+            () -> new ModStandingSignBlock(createFungusMaterial(Blocks.WARPED_SIGN), ModWoodTypes.TOADSTOOL));
 
 
 
@@ -151,16 +150,14 @@ public class ECBlocks {
         return BLOCKS.register(name, block);
     }
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block,
-                                                                     CreativeModeTab tab, String tooltipKey) {
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, String tooltipKey) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab, tooltipKey);
         return toReturn;
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab, String tooltipKey) {
-        return ECItems.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(tab)));
+        return ECItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
@@ -169,8 +166,7 @@ public class ECBlocks {
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
-                                                                            CreativeModeTab tab) {
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
         return ECItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties().tab(tab)));
     }

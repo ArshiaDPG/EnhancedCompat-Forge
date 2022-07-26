@@ -11,7 +11,11 @@ import java.util.function.Supplier;
 public class ECEntities {
     public static final PollinatedRegistry<PollinatedBoatType> BOATS = PollinatedRegistry.create(PollenRegistries.BOAT_TYPE_REGISTRY, EnhancedCompatMod.MOD_ID);
 
-    public static final Supplier<PollinatedBoatType> GLOWSHROOM_BOAT = BOATS.register("glowshroom_boat", () -> new PollinatedBoatType(new ResourceLocation(EnhancedCompatMod.MOD_ID, "textures/entity/boat/glowshroom.png")));
-    public static final Supplier<PollinatedBoatType> TOADSTOOL_BOAT = BOATS.register("toadstool_boat", () -> new PollinatedBoatType(new ResourceLocation(EnhancedCompatMod.MOD_ID, "textures/entity/boat/toadstool.png")));
+    public static final Supplier<PollinatedBoatType> GLOWSHROOM_BOAT = makeBoat("glowshroom");
+    public static final Supplier<PollinatedBoatType> TOADSTOOL_BOAT = makeBoat("toadstool");
 
+
+    public static Supplier<PollinatedBoatType> makeBoat(String name){
+        return BOATS.register(name + "_boat", () -> new PollinatedBoatType(new ResourceLocation(EnhancedCompatMod.MOD_ID, "textures/entity/boat/"+ name +".png")));
+    }
 }

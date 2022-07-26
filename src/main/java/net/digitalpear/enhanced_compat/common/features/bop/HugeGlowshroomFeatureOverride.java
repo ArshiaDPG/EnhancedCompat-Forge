@@ -1,8 +1,7 @@
-package net.digitalpear.enhanced_compat.mixin;
+package net.digitalpear.enhanced_compat.common.features.bop;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.util.SimpleBlockPredicate;
-import biomesoplenty.common.worldgen.feature.misc.HugeGlowshroomFeature;
 import com.mojang.serialization.Codec;
 import net.digitalpear.enhanced_compat.init.ECBlocks;
 import net.minecraft.core.BlockPos;
@@ -17,15 +16,13 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.Random;
 
-@Mixin(HugeGlowshroomFeature.class)
-public class HugeGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguration> {
+public class HugeGlowshroomFeatureOverride extends Feature<NoneFeatureConfiguration> {
 
     private static final Block GLOWSHROOM_STEM = ECBlocks.GLOWSHROOM_STEM.get();
-    public HugeGlowshroomFeatureMixin(Codec<NoneFeatureConfiguration> p_65786_) {
+    public HugeGlowshroomFeatureOverride(Codec<NoneFeatureConfiguration> p_65786_) {
         super(p_65786_);
     }
 
@@ -35,9 +32,6 @@ public class HugeGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguration
         ChunkGenerator chunkGenerator = featurePlaceContext.chunkGenerator();
         Random rand = featurePlaceContext.random();
         BlockPos startPos = featurePlaceContext.origin();
-
-        for(NoneFeatureConfiguration var6 = (NoneFeatureConfiguration)featurePlaceContext.config(); startPos.getY() > -64 && this.replace.matches(world, startPos); startPos = startPos.below()) {
-        }
 
         if (!this.placeOn.matches(world, startPos.offset(0, 0, 0))) {
             return false;
@@ -56,7 +50,7 @@ public class HugeGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguration
             int z;
             for(x = -(radius - 1); x <= radius - 1; ++x) {
                 for(z = -(radius - 1); z <= radius - 1; ++z) {
-                    this.setBlock(world, pos.offset(x, height, z), (BlockState) BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false));
+                    this.setBlock(world, pos.offset(x, height, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false));
                 }
             }
 
@@ -64,23 +58,23 @@ public class HugeGlowshroomFeatureMixin extends Feature<NoneFeatureConfiguration
                 for(z = -radius; z <= radius; ++z) {
                     if (x != -radius && x != radius || z != -radius && z != radius) {
                         if (x == radius) {
-                            this.setBlock(world, pos.offset(x, height - 1, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.WEST, false));
-                            this.setBlock(world, pos.offset(x, height - 2, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.WEST, false));
+                            this.setBlock(world, pos.offset(x, height - 1, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.WEST, false));
+                            this.setBlock(world, pos.offset(x, height - 2, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.WEST, false));
                         }
 
                         if (x == -radius) {
-                            this.setBlock(world, pos.offset(x, height - 1, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.EAST, false));
-                            this.setBlock(world, pos.offset(x, height - 2, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.EAST, false));
+                            this.setBlock(world, pos.offset(x, height - 1, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.EAST, false));
+                            this.setBlock(world, pos.offset(x, height - 2, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.EAST, false));
                         }
 
                         if (z == radius) {
-                            this.setBlock(world, pos.offset(x, height - 1, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.NORTH, false));
-                            this.setBlock(world, pos.offset(x, height - 2, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.NORTH, false));
+                            this.setBlock(world, pos.offset(x, height - 1, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.NORTH, false));
+                            this.setBlock(world, pos.offset(x, height - 2, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.NORTH, false));
                         }
 
                         if (z == -radius) {
-                            this.setBlock(world, pos.offset(x, height - 1, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.SOUTH, false));
-                            this.setBlock(world, pos.offset(x, height - 2, z), (BlockState)BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.SOUTH, false));
+                            this.setBlock(world, pos.offset(x, height - 1, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.SOUTH, false));
+                            this.setBlock(world, pos.offset(x, height - 2, z), BOPBlocks.GLOWSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.SOUTH, false));
                         }
                     }
                 }

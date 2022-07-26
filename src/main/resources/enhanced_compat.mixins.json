@@ -6,12 +6,7 @@
   "refmap": "enhanced_compat.refmap.json",
   "mixins": [
     "HugeToadstoolFeatureMixin",
-    "SmallToadstoolFeatureMixin",
-
-    "GiantGlowshroomFeatureMixin",
-    "HugeGlowshroomFeatureMixin",
-    "MediumGlowshroomFeatureMixin",
-    "SmallGlowshroomFeatureMixin"
+    "SmallToadstoolFeatureMixin"
   ],
   "client": [
   ],
